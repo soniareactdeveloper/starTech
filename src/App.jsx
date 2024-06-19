@@ -3,6 +3,9 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import './App.css'
 import Home from './Pages/Home'
 import Description from './Pages/Description'
+import NotFound from './Pages/NotFound'
+import Buy from './Pages/Buy'
+import Confirm from './Pages/Confirm'
 
 
 function App() {
@@ -11,6 +14,9 @@ function App() {
       <Route>
         <Route path='/' element={<Home/>}/>
         <Route path='/description' element={<Description/>}/>
+        <Route path='/buy'  element={<Buy/>}/>
+        <Route path='/confirm' element={<Confirm/>}/>
+        <Route path='*'  element={<NotFound/>}/>
       </Route>
     )
   )

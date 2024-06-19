@@ -6,17 +6,32 @@ import { IoLocationSharp } from "react-icons/io5";
 import Navbar from "../Components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { incrementByAmount } from "../Slices/ProductSlices";
+
 
 
 const Home = () => {
  const[state, setState]= useState([])
-  
+ const navigate = useNavigate()
+ const dispatch = useDispatch()
+
+
   useEffect(()=>{
     axios.get('https://api.jsonbin.io/v3/b/6671e3e2e41b4d34e4053064')
     .then((res)=>setState(res.data.record))
   })
    
+  const handleShow = (product)=>{
+    navigate('/description')
+    dispatch(incrementByAmount(product))
+  }
   
+  const handleBuy = (buy)=>{
+    navigate('/buy')
+    dispatch(incrementByAmount(buy))
+  }
   return (
     <> 
       <Navbar/>
@@ -156,15 +171,15 @@ const Home = () => {
                  <ul className="list-[circle] mt-4">
                    <li>Id: {item.id}</li>
                    <li>Display: {item.display}</li>
-                   <li>processor:</li>
-                   <li>ram:</li>
-                   <li>charger_capacity:</li>
-                   <li>screen_size:</li>
+                   <li>processor: {item.processor}</li>
+                   <li>ram: {item.ram}</li>
+                   <li>charger_capacity: {item.charger_capacity}</li>
+                   <li>screen_size: {item.screen_size}</li>
                  </ul>
-                 <div className="text-lg text-red-600 mt-4 font-bold">Price:</div>
-                 <button className="text-xl text-black font-bold bg-yellow-300 w-[200px] p-2 rounded-md mt-3 hover:bg-[#059212] active:bg-yellow-300">Show More</button>
+                 <div className="text-lg text-red-600 mt-4 font-bold">Price: {item.price}</div>
+                 <button onClick={()=>handleShow(item)} className="text-xl text-black font-bold bg-yellow-300 w-[200px] p-2 rounded-md mt-3 hover:bg-[#059212] active:bg-yellow-300">Show More</button>
                  <br />
-                 <button className="text-xl text-black font-bold bg-blue-300 w-[200px] p-2 rounded-md mt-3 hover:bg-[#FFD1E3] active:bg-blue-300 mb-6">Buy Now</button>
+                 <button onClick={()=>handleBuy(item)} className="text-xl text-black font-bold bg-blue-300 w-[200px] p-2 rounded-md mt-3 hover:bg-[#FFD1E3] active:bg-blue-300 mb-6">Buy Now</button>
                </div>
             </div>
          </div>
