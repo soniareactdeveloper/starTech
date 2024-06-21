@@ -25,6 +25,7 @@ const Description = () => {
         <div className="text-3xl text-red-600 mt-4 font-bold">Price: {data.price}</div>
        </div>
     </div>
+    <div className="flex gap-5">
     <div className="specification w-[900px] p-6 bg-white shadow-lg ml-3 mb-9 rounded-sm">
       <h2 className="text-[30px] text-black font-semibold">Specification</h2>
       <h3 className="text-lg text-gray-800 mt-5">Processor: {data.processor}</h3>
@@ -61,6 +62,15 @@ const Description = () => {
       <hr />
       <h3 className="text-lg text-gray-800 mt-5">speaker: {data.speaker}</h3>
       <hr />
+    </div>
+      <div className="flex flex-col gap-3 ml-12">
+          <h2 className="text-2xl text-black font-bold ml-12">Similar Product</h2>
+          <div className="sideProduct w-[400px] p-4 h-[400px] bg-white shadow-2xl">
+             <div className="w-[200px] h-[150px]"><img src={data.photo_url} alt="product" /></div>
+             <h3 className="text-lg text-black font-medium mt-10">{data.description}</h3>
+             <h3 className="text-lg text-black font-medium mt-4">{data.price}</h3>
+          </div>
+      </div>
     </div>
     </>
   )
